@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Impostor Mexicano 🌮</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="pantalla-inicio" class="pantalla activa">
+            <div class="header-mexicano">
+                <h1>🇲🇽 El Impostor Mexicano 🇲🇽</h1>
+                <p class="subtitle">¿Quién es el impostor? ¡Descúbrelo antes de que sea tarde!</p>
+            </div>
+
+            <div class="menu-principal">
+                <button class="btn btn-primary" onclick="iniciarNuevaPartida()">
+                    🎮 Nueva Partida
+                </button>
+            </div>
+
+            <div class="reglas">
+                <h3>📜 ¿Cómo jugar?</h3>
+                <ul>
+                    <li><strong>Mínimo 3 jugadores</strong> se turnan para registrarse</li>
+                    <li>Cada jugador verá su palabra <strong>EN SECRETO</strong> (los demás cierran los ojos 👀)</li>
+                    <li>El impostor NO recibe la palabra secreta</li>
+                    <li>Cada ronda, los jugadores dan pistas relacionadas a la palabra</li>
+                    <li>Después votan para eliminar al sospechoso</li>
+                    <li><strong>Jugadores ganan:</strong> Si eliminan al impostor</li>
+                    <li><strong>Impostor gana:</strong> Si adivina la palabra o sobrevive</li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <div id="pantalla-config" class="pantalla">
+            <h2>⚙️ Configuración de la Partida</h2>
+            
+            <div class="form-group">
+                <label>Selecciona la categoría:</label>
+                <select id="categoria-select" class="input-field">
+                    <option value="comida">🌮 Comida Mexicana</option>
+                    <option value="lugares">🏛️ Lugares de México</option>
+                    <option value="tradiciones">🎊 Tradiciones</option>
+                    <option value="personajes">👤 Personajes Famosos</option>
+                    <option value="objetos">🎨 Objetos Típicos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Cuántos jugadores van a jugar? (Mínimo 3)</label>
+                <input type="number" id="num-jugadores" class="input-field" min="3" max="10" value="3">
+            </div>
+
+            <button class="btn btn-primary" onclick="crearPartida()">Continuar →</button>
+            <button class="btn btn-back" onclick="volverInicio()">← Volver</button>
+        </div>
+
+        <!-- Registro de jugadores -->
+        <div id="pantalla-registro" class="pantalla">
+            <h2>📝 Registro de Jugadores</h2>
+            <p class="info-text">Jugador <strong id="jugador-numero">1</strong> de <strong id="total-jugadores">3</strong></p>
+
+            <div class="form-group">
+                <label>Escribe tu nombre:</label>
+                <input type="text" id="nombre-jugador" class="input-field" placeholder="Tu nombre" maxlength="20" autofocus>
+            </div>
+
+            <button class="btn btn-primary" onclick="registrarJugador()">Registrar Jugador</button>
+
+            <div class="jugadores-registrados">
+                <h3>✅ Jugadores registrados:</h3>
+                <ul id="lista-registrados"></ul>
+            </div>
+        </div>
+
+        <!-- Revelar palabra a cada jugador -->
+        <div id="pantalla-revelacion" class="pantalla">
+            <div class="revelacion">
+                <div class="alerta-privacidad">
+                    <h2>⚠️ ¡ATENCIÓN!</h2>
+                    <h3 id="nombre-turno">Jugador X</h3>
+                    <p class="warning-big">Los demás jugadores deben <strong>CERRAR LOS OJOS</strong> 👀</p>
+                    <p>Solo tú debes ver tu palabra secreta</p>
+                </div>
+                
+                <button class="btn btn-success btn-large" onclick="revelarPalabra()">
+                    👁️ Ver Mi Palabra
+                </button>
+            </div>
+        </div>
+
+        <!-- Mostrar palabra -->
+        <div id="pantalla-palabra" class="pantalla">
+            <div class="revelacion">
+                <h3 id="nombre-jugador-palabra">Jugador</h3>
+                <h2>Tu palabra secreta es:</h2>
+                <div class="palabra-secreta" id="palabra-mostrar"></div>
+                <p class="instruccion" id="instruccion-rol"></p>
+                
+                <div class="countdown">
+                    <p>Memoriza bien tu palabra...</p>
+                    <div class="countdown-number" id="countdown">5</div>
+                </div>
+
+                <button class="btn btn-primary" onclick="siguienteJugadorRevelacion()">
+                    Listo, siguiente jugador →
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla de juego -->
+        <div id="pantalla-juego" class="pantalla">
+            <div class="info-partida">
+                <div class="info-item">
+                    <strong>Ronda:</strong> <span id="ronda-actual">1</span>
+                </div>
+                <div class="info-item">
+                    <strong>Categoría:</strong> <span id="categoria-juego"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Jugadores vivos:</strong> <span id="jugadores-vivos">0</span>
+                </div>
+            </div>
+
+            <!-- Turno para dar pista -->
+            <div id="seccion-turno" class="seccion-turno">
+                <h2>🎤 Turno de: <span id="jugador-turno">Jugador</span></h2>
+                <div class="form-group">
+                    <input type="text" id="pista-input" class="input-field" placeholder="Da tu pista relacionada a la palabra...">
+                </div>
+                <button class="btn btn-primary" onclick="darPista()">Enviar Pista</button>
+            </div>
+
+            <!-- Pistas de la ronda -->
+            <div class="pistas-mostradas">
+                <h3>📝 Pistas de esta ronda:</h3>
+                <div id="lista-pistas"></div>
+            </div>
+
+            <!-- Votación -->
+            <div id="seccion-votacion" class="seccion-votacion" style="display: none;">
+                <h3>👆 ¡Es hora de votar!</h3>
+                <p>¿Quién creen que es el impostor?</p>
+                <p class="info-text">Cada jugador vota en secreto (los demás cierren los ojos)</p>
+                <div id="opciones-voto"></div>
+                <button class="btn btn-danger" onclick="revelarResultadoVotacion()">Ver Resultado de Votación</button>
+            </div>
+
+            <!-- Adivinanza del impostor -->
+            <div class="seccion-impostor" id="seccion-adivinar" style="display: none;">
+                <h3>🎯 El impostor puede intentar adivinar la palabra</h3>
+                <p class="info-text">Si adivina correctamente, ¡GANA el impostor!</p>
+                <input type="text" id="adivinanza-input" class="input-field" placeholder="¿Cuál es la palabra secreta?">
+                <button class="btn btn-success" onclick="intentarAdivinar()">Adivinar</button>
+                <button class="btn btn-secondary" onclick="saltarAdivinanza()">Pasar →</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de resultado -->
+        <div id="pantalla-resultado" class="pantalla">
+            <div class="resultado-final">
+                <div id="resultado-icono" class="resultado-icono">🎭</div>
+                <h2 id="resultado-titulo"></h2>
+                <div class="palabra-revelada">
+                    La palabra era: <strong id="palabra-final"></strong>
+                </div>
+                <p id="resultado-mensaje"></p>
+                <button class="btn btn-primary" onclick="volverInicio()">🔄 Nueva Partida</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

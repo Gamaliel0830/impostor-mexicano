@@ -1,0 +1,498 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #006847 0%, #CE1126 50%, #FFFFFF 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pantalla {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-mexicano {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-mexicano h1 {
+    font-size: 3em;
+    color: #006847;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #CE1126;
+    font-weight: 500;
+}
+
+.menu-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #006847, #009B5C);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #005239, #00803D);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #CE1126, #E63946);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #A00E1E, #CE1126);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #E6C200, #FF8C00);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #8B0000, #DC143C);
+    color: white;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: white;
+}
+
+.reglas {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #006847;
+}
+
+.reglas h3 {
+    color: #006847;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.reglas ul {
+    list-style-position: inside;
+    color: #333;
+    line-height: 1.8;
+}
+
+.reglas li {
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #006847;
+}
+
+.codigo-display {
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+}
+
+.codigo-grande {
+    font-size: 3em;
+    font-weight: bold;
+    color: #006847;
+    letter-spacing: 8px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-text {
+    color: #666;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.warning-text {
+    color: #CE1126;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff3cd;
+    border-radius: 8px;
+}
+
+.jugadores-lista {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.jugadores-lista h3 {
+    color: #006847;
+    margin-bottom: 15px;
+}
+
+.jugadores-lista ul {
+    list-style: none;
+}
+
+.jugadores-lista li {
+    padding: 10px 15px;
+    background: white;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 4px solid #006847;
+    font-weight: 500;
+}
+
+.revelacion {
+    text-align: center;
+}
+
+.palabra-secreta {
+    font-size: 4em;
+    font-weight: bold;
+    color: #CE1126;
+    padding: 40px;
+    background: linear-gradient(135deg, #fff3cd, #ffe69c);
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.instruccion {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.info-partida {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(135deg, #006847, #009B5C);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.info-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.seccion-pistas,
+.seccion-votacion,
+.seccion-impostor {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.seccion-pistas h3,
+.seccion-votacion h3,
+.seccion-impostor h3 {
+    color: #006847;
+    margin-bottom: 15px;
+}
+
+.pistas-mostradas {
+    margin: 25px 0;
+}
+
+.pista-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #FFD700;
+}
+
+.pista-item strong {
+    color: #006847;
+}
+
+.opciones-voto {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.voto-btn {
+    padding: 12px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.voto-btn:hover {
+    background: #006847;
+    color: white;
+    border-color: #006847;
+}
+
+.voto-btn.selected {
+    background: #CE1126;
+    color: white;
+    border-color: #CE1126;
+}
+
+.resultado-final {
+    text-align: center;
+    padding: 40px;
+}
+
+.resultado-final h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.resultado-final p {
+    font-size: 1.3em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.alerta-privacidad {
+    text-align: center;
+    background: linear-gradient(135deg, #fff3cd, #ffe69c);
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 3px dashed #ffc107;
+}
+
+.alerta-privacidad h2 {
+    color: #856404;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.alerta-privacidad h3 {
+    color: #006847;
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+.warning-big {
+    font-size: 1.5em;
+    color: #CE1126;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.btn-large {
+    font-size: 1.5em;
+    padding: 20px 40px;
+    margin-top: 20px;
+}
+
+.countdown {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.countdown-number {
+    font-size: 4em;
+    font-weight: bold;
+    color: #006847;
+    margin: 20px 0;
+}
+
+.jugadores-registrados {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.jugadores-registrados h3 {
+    color: #006847;
+    margin-bottom: 15px;
+}
+
+.jugadores-registrados ul {
+    list-style: none;
+}
+
+.jugadores-registrados li {
+    padding: 10px 15px;
+    background: white;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+    font-weight: 500;
+}
+
+.seccion-turno {
+    background: linear-gradient(135deg, #006847, #009B5C);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.seccion-turno h2 {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.seccion-turno .input-field {
+    background: white;
+}
+
+.resultado-icono {
+    font-size: 6em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.palabra-revelada {
+    background: linear-gradient(135deg, #fff3cd, #ffe69c);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+.palabra-revelada strong {
+    color: #CE1126;
+    font-size: 1.3em;
+}
+
+@media (max-width: 768px) {
+    .header-mexicano h1 {
+        font-size: 2em;
+    }
+    
+    .pantalla {
+        padding: 20px;
+    }
+    
+    .palabra-secreta {
+        font-size: 2.5em;
+        padding: 20px;
+    }
+    
+    .info-partida {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .codigo-grande {
+        font-size: 2em;
+        letter-spacing: 4px;
+    }
+
+    .alerta-privacidad h2 {
+        font-size: 1.8em;
+    }
+
+    .alerta-privacidad h3 {
+        font-size: 1.5em;
+    }
+
+    .warning-big {
+        font-size: 1.2em;
+    }
+
+    .resultado-icono {
+        font-size: 4em;
+    }
+}
